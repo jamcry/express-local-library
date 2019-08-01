@@ -12,7 +12,7 @@ var app = express();
 
 // set up mongoose connection
 var mongoose = require('mongoose');
-var mongoDB = 'mongodb+srv://jamcry:<PASSWORD>@expresslocallibrary-tlkmp.mongodb.net/test?retryWrites=true&w=majority'
+var mongoDB = 'mongodb+srv://jamcry:<PASSWORD>@expresslocallibrary-tlkmp.mongodb.net/local_library?retryWrites=true&w=majority'
 mongoose.connect(mongoDB, { useNewUrlParser: true });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error: '));
