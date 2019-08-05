@@ -1,8 +1,9 @@
 extends layout
 
 block content
-  h1 ID: #{bookinstance._id}
-  
+  h1 #{title}: #{bookinstance.book.title}
+  p Instance ID: #{bookinstance.id}
+
   p #[strong Title:] 
     a(href=bookinstance.book.url) #{bookinstance.book.title}
   p #[strong Imprint:] #{bookinstance.imprint}
@@ -18,6 +19,9 @@ block content
   if bookinstance.status!='Available'
     p #[strong Due back:] #{bookinstance.due_back}
 
-  hr
-  p
-    a(href=bookinstance.url+'/delete') Delete This Instance
+  p.text-danger #[strong Do you really want to delete this Instance?]
+  
+  form(method='POST' action='')
+    div.form-group
+      input#bookinstanceid.form-control(type='hidden',name='bookinstanceid', required='true', value=bookinstance._id )
+    button.btn.btn-primary(type='submit') Delete
