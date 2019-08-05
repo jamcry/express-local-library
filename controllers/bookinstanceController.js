@@ -73,7 +73,6 @@ exports.bookinstance_create_post = [
     });
 
     if (!errors.isEmpty()) {
-
       Book.find({}, "title").exec(function(err, books) {
         if (err) return next(err);
         res.render("bookinstance_form", {
@@ -85,14 +84,11 @@ exports.bookinstance_create_post = [
         });
         return;
       });
-
     } else {
-
       bookinstance.save(function(err) {
         if (err) return next(err);
         res.redirect(bookinstance.url);
       });
-
     }
   }
 ];
@@ -100,11 +96,11 @@ exports.bookinstance_create_post = [
 // Display BookInstance delete form on GET.
 exports.bookinstance_delete_get = function(req, res, next) {
   bookinstance = BookInstance.findById(req.params.id)
-    .populate('book')
+    .populate("book")
     .exec(function(err, instance) {
-      if(err) return next(err);
-      res.render('bookinstance_delete', {
-        title: 'Delete Book Instance',
+      if (err) return next(err);
+      res.render("bookinstance_delete", {
+        title: "Delete Book Instance",
         bookinstance: instance
       });
     });
@@ -113,9 +109,9 @@ exports.bookinstance_delete_get = function(req, res, next) {
 // Handle BookInstance delete on POST.
 exports.bookinstance_delete_post = function(req, res) {
   BookInstance.findByIdAndDelete(req.body.bookinstanceid, function(err) {
-    if(err) return next(err);
-    res.redirect('/catalog/bookinstances')
-  })
+    if (err) return next(err);
+    res.redirect("/catalog/bookinstances");
+  });
 };
 
 // Display BookInstance update form on GET.
